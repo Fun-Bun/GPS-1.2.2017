@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Item
+  - Deadly
+  - Background
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Transparent_Tiles
+  - Solid_Tiles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 359230901
+    locked: 0
+  - name: BackTile
+    uniqueID: 2267131197
+    locked: 0
+  - name: Actor
+    uniqueID: 351570527
+    locked: 0
+  - name: FrontTile
+    uniqueID: 210940271
+    locked: 0
+  - name: UI
+    uniqueID: 597201791
+    locked: 0

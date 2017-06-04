@@ -35,6 +35,7 @@ public class HomingMissile : MonoBehaviour {
 	{
 		if (other.tag == "Player") 
 		{
+			other.gameObject.GetComponent<HealthManager>().DealDamage(30f);
 			Destroy (this.gameObject, 0.02f);
 		}
 	}

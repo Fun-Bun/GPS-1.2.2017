@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 	{
 		GameObject textGO = Instantiate(damageIndicator);
 		textGO.transform.SetParent(GameObject.Find("Canvas").transform);
+		//textGO.transform.GetChild(0).GetComponent<Text>().text = ???;
 
 		Text tempText = textGO.GetComponent<Text>();
 		tempText.resizeTextForBestFit = true;

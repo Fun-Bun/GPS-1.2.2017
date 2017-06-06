@@ -18,7 +18,7 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		hasGun = GetComponent<InventorySystem>().itemCount[(int)ItemScript.ItemType.Gun] > 0;
+		hasGun = GetComponent<InventorySystem>().itemCount[(int)ItemType.Gun] > 0;
 
 		if(hasGun)
 		{

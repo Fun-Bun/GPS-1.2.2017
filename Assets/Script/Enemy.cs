@@ -19,10 +19,10 @@ public class Enemy : MonoBehaviour
 		float finalDmg = attackStats * (isCrit ? 3 : 1);
 		HP -= finalDmg;
 	     
-	    FloatingText(finalDmg.ToString());
+		FloatingText(finalDmg.ToString(), (int)finalDmg, (isCrit ? Color.red : Color.yellow));
 	}
 	 
-	public void FloatingText(string text)
+	public void FloatingText(string text, int damage = 1, Color? textColor = null)
 	{
 		GameObject textGO = Instantiate(damageIndicator);
 		textGO.transform.SetParent(GameObject.Find("Canvas").transform);
@@ -32,10 +32,11 @@ public class Enemy : MonoBehaviour
 		tempText.resizeTextForBestFit = true;
 		tempText.alignment = TextAnchor.MiddleCenter;
 		tempText.text = text;
+		tempText.color = textColor ?? Color.white;
 	    
 		RectTransform tempRect = textGO.GetComponent<RectTransform>();
-		tempRect.transform.localPosition = damageIndicator.transform.localPosition;
-		tempRect.transform.localScale = damageIndicator.transform.localScale;
+		tempRect.transform.position = transform.position + (Vector3.up * 0.4f);
+		tempRect.transform.localScale = damageIndicator.transform.localScale / 3 * damage;
 
 		textGO.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 2, ForceMode2D.Impulse);
 

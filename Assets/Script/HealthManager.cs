@@ -65,6 +65,7 @@ public class HealthManager : MonoBehaviour {
 	void Die()
 	{
 		CurrentHealth = 0;
+		Destroy(gameObject);
 		Debug.Log("You're Dead");
 	}
 

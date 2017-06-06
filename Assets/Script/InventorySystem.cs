@@ -9,9 +9,9 @@ public class InventorySystem : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		itemCount = new int[(int)ItemScript.ItemType.TotalItems];
+		itemCount = new int[(int)ItemType.TotalItems];
 
-		for(int i = 0; i < (int)ItemScript.ItemType.TotalItems; i++)
+		for(int i = 0; i < (int)ItemType.TotalItems; i++)
 			itemCount[i] = 0;
 	}
 }

@@ -2,22 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawningZombies : MonoBehaviour {
+[System.Serializable]
+public class Troop
+{
+	public List<GameObject> prefab;
+	public int spawnRatio;
+}
 
-	public Transform[] spawnPoints;
-	public GameObject[] whatToSpawnPrefabs;
-	public GameObject[] whatToSpawnClones;
+public class SpawningZombies : MonoBehaviour
+{
+	public List<GameObject> spawnPointList;
+	public List<Troop> spawnTroopList;
+	public List<GameObject> spawnedClones;
 
-	void OnTriggerEnter2D (Collider2D other)
+	void Start()
 	{
-		if(other.tag == "Particle")
+		int total = 0;
+		foreach(Troop t in spawnTroopList)
 		{
-			Destroy (gameObject, 0.02f);
+			total += t.spawnRatio;
 		}
 
-		whatToSpawnClones[0] = Instantiate(whatToSpawnPrefabs[0], spawnPoints[0].transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-		whatToSpawnClones[1] = Instantiate(whatToSpawnPrefabs[1], spawnPoints[1].transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-		whatToSpawnClones[2] = Instantiate(whatToSpawnPrefabs[2], spawnPoints[2].transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-		whatToSpawnClones[3] = Instantiate(whatToSpawnPrefabs[3], spawnPoints[3].transform.position, Quaternion.Euler(0,0,0)) as GameObject;
+		int currentRatio = 0;
+		int chosenSpawn = Random.Range(1, total);
+		Debug.Log(chosenSpawn);
+
+		foreach(Troop t in spawnTroopList)
+		{
+			currentRatio += t.spawnRatio;
+
+			if(currentRatio > chosenSpawn)
+			{
+				for(int i = 0; i < t.prefab.Count; i++)
+				{
+					spawnedClones.Add(Instantiate(t.prefab[i], spawnPointList[Random.Range(0, spawnPointList.Count - 1)].transform.position, Quaternion.identity));
+				}
+				break;
+			}
+		}
 	}
 }

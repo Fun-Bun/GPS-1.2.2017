@@ -22,13 +22,31 @@ GameObject:
   - component: {fileID: 212814824150697322}
   - component: {fileID: 50798887996059032}
   - component: {fileID: 61613881417841202}
-  - component: {fileID: 114691123533038822}
-  - component: {fileID: 114775124075073862}
-  - component: {fileID: 114812714496495738}
   - component: {fileID: 95127957077002156}
+  - component: {fileID: 114461604740572342}
+  - component: {fileID: 114956983548554488}
+  - component: {fileID: 114634088632762700}
+  - component: {fileID: 114267379469620120}
+  - component: {fileID: 114990371422758656}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1805990319294152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4480685161607302}
+  - component: {fileID: 114132512337079772}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,10 +58,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131588669103158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.47, y: -1.625, z: 0}
+  m_LocalPosition: {x: -3.07, y: -2.24, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4480685161607302}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4480685161607302
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1805990319294152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4011100632437786}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50798887996059032
@@ -108,7 +140,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114691123533038822
+--- !u!114 &114132512337079772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1805990319294152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51c39938234f0245b54706ec5acfc2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 0}
+  bullet: {fileID: 1879446645940942, guid: 96adcc53bc4b4444f84cbbc49a35a9bf, type: 2}
+  bulletSpeed: 5
+  accuracy: 90
+  critChance: 30
+  cooldown: 0.05
+  state: 0
+--- !u!114 &114267379469620120
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -116,37 +166,93 @@ MonoBehaviour:
   m_GameObject: {fileID: 1131588669103158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 213cef76bea87b042bb16cfc05b7d91a, type: 3}
+  m_Script: {fileID: 11500000, guid: ed1eeae754a5b0f40b40a0d9be4938eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  items: []
+  occupiedSpace:
+    value: 0
+    max: 50
+--- !u!114 &114461604740572342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131588669103158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2acffbb2b21394f95b665cd1a7457e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
+  collider: {fileID: 0}
+  rigidbody: {fileID: 0}
+  controls: {fileID: 0}
+  status: {fileID: 0}
+  inventory: {fileID: 0}
+  camera: {fileID: 0}
+  ui: {fileID: 0}
+  weapons: []
+--- !u!114 &114634088632762700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131588669103158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a2d16ca4e56b543b3a3d5167d2f72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    value: 100
+    max: 100
+  hunger:
+    value: 6
+    max: 6
+  hungerDeplete:
+    resource:
+      value: 0
+      max: 0
+    depleteAmount: 1
+    depleteDuration: 5
+    depleteRate: 1
+  movementSpeed: 3
   jumpHeight: 5
+--- !u!114 &114956983548554488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131588669103158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a014af7c3205e3f4ba0ca9da2c14d149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  hungerBar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hungerSprites:
+  - {fileID: 21300000, guid: b65b90595923b9b4988911d85736e996, type: 3}
+  - {fileID: 21300000, guid: fd0299b43a2521b46a3af2e4975ac587, type: 3}
+  - {fileID: 21300000, guid: 5a15903d0c198604eb27c324d0428ebf, type: 3}
+--- !u!114 &114990371422758656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131588669103158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea38ac89ab5e824a8274414d2f48fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &114775124075073862
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1131588669103158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd90224e2960555458de4c870f059d94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCount: 
---- !u!114 &114812714496495738
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1131588669103158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c7524e6798c4ba418ab273abb926a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212814824150697322
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -177,7 +283,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 351570527
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c64b2c46976847648aa6c0c05ff8fb3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

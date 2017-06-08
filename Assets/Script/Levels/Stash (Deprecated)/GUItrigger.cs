@@ -27,7 +27,7 @@ public class GUItrigger : MonoBehaviour {
 	void changeScene (){
 		if (Input.GetKeyDown (KeyCode.E) && showText == true) {
 			//GameObject.Find ("EventSystem").SetActive (false);
-			SceneManager.LoadScene ("RestUI",LoadSceneMode.Additive);
+			SceneManager.LoadScene ("UIScene",LoadSceneMode.Additive);
 		}
 	}
 		

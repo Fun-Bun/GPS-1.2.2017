@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickupSystem : MonoBehaviour
 {
+    /*
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.gameObject.tag == "Item")
@@ -22,5 +23,5 @@ public class PickupSystem : MonoBehaviour
 			}
 			Destroy(other.gameObject);
 		}
-	}
+	}*/
 }

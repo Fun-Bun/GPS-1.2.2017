@@ -22,13 +22,17 @@ public class PlayerControls : MonoBehaviour
 
 	//Animation
 	//...
-	
-	void Awake ()
+
+	void Awake()
 	{
-		distToGround = self.collider.bounds.extents.y;
 		grounded = false;
 		hasDoubleJumped = false;
-        hasGun = false;
+		hasGun = false;
+	}
+
+	void Start ()
+	{
+		distToGround = self.collider.bounds.extents.y;
 	}
 	
 	// Update is called once per frame

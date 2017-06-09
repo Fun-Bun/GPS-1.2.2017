@@ -7,6 +7,9 @@ public class PlayerControls : MonoBehaviour
     [System.NonSerialized]
 	public Player self;
 
+	//Detection
+	public Platform platform;
+
 	//Movement
 	float distToGround;
 	bool grounded;

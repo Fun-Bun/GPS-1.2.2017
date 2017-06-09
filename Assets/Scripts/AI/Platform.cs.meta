@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6c75587f063dab1449bf673d964698de
+timeCreated: 1496137560
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - jumpTrigger: {instanceID: 0}
+  - zombie: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

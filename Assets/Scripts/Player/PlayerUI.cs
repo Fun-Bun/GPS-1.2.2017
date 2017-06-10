@@ -9,11 +9,13 @@ public class PlayerUI : MonoBehaviour
 	public Player self;
 
     //UIs
-    public Slider healthBar;
-    public List<Image> hungerBar;
+	public Slider healthBar; //Change to Image
+	public List<Image> hungerBar; //Change to Slider
+	public List<Image> ammoBar;
 
-    //Reference sprites
-    public List<Sprite> hungerSprites;
+	//Reference sprites
+	public List<Sprite> hungerSprites;
+	public List<Sprite> ammoSprites;
 
 	// Use this for initialization
 	void Start ()
@@ -44,4 +46,16 @@ public class PlayerUI : MonoBehaviour
             else hungerBar[i].sprite = hungerSprites[2];
         }
     }
+
+	void UpdateAmmo()
+	{
+		for(int i = 0; i < self.status.hunger.max / 2; i++)
+		{
+			int calculation = self.status.hunger.value - (2 * i);
+
+			if(calculation >= 2) hungerBar[i].sprite = hungerSprites[0];
+			else if(calculation >= 1) hungerBar[i].sprite = hungerSprites[1];
+			else hungerBar[i].sprite = hungerSprites[2];
+		}
+	}
 }

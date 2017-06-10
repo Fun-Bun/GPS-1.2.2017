@@ -20,9 +20,6 @@ public class PlayerControls : MonoBehaviour
     //Interact
     bool interacting;
 
-    //Shoot
-    bool hasGun;
-
 	//Animation
 	//...
 
@@ -30,7 +27,6 @@ public class PlayerControls : MonoBehaviour
 	{
 		grounded = false;
 		hasDoubleJumped = false;
-		hasGun = false;
 	}
 
 	void Start ()
@@ -97,11 +93,16 @@ public class PlayerControls : MonoBehaviour
         //Shoot
         if(Input.GetButton("Fire1"))
         {
-            if(hasGun)
-            {
-                self.weapons[0].Shoot();
-            }
+			if(self.ownedWeapons[0] != null)
+				self.ownedWeapons[0].Shoot();
         }
+
+		//Reload
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			if(self.ownedWeapons[0] != null)
+				self.ownedWeapons[0].Reload();
+		}
 
         //Debug - Reduce health
         if(Input.GetKeyDown(KeyCode.X))
@@ -136,11 +137,18 @@ public class PlayerControls : MonoBehaviour
                 DroppedItem drop = other.GetComponent<DroppedItem>();
                 switch(drop.type)
                 {
-                    //Debug - Directly use gun
+                    //Debug - Directly use Gun
                     case ItemType.Gun:
-                        hasGun = true;
+						GameObject newGun = Instantiate(self.weaponPrefab, this.transform);
+						newGun.GetComponent<PlayerWeapon>().Setup(WeaponType.AK47);
+						self.ownedWeapons.Add(newGun.GetComponent<PlayerWeapon>());
                         break;
-                        //Debug - Directly eat the food
+					//Debug - Directly upgrade Gun to Particle Cannon
+					case ItemType.Scrap:
+						if(self.ownedWeapons[0] != null)
+							self.ownedWeapons[0].Setup(WeaponType.ParticleCannon);
+						break;
+                    //Debug - Directly eat the food
                     case ItemType.Food:
                         self.status.health.Extend(self.status.health.max);
                         self.status.hunger.Extend(self.status.hunger.max);

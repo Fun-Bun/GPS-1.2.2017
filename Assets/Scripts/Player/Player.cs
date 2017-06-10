@@ -16,7 +16,10 @@ public class Player : MonoBehaviour
     public PlayerCamera camera;
     public PlayerUI ui;
 
-    public PlayerWeapon[] weapons;
+	public List<PlayerWeapon> ownedWeapons;
+
+	//Weapon Prefab
+	public GameObject weaponPrefab;
 
 	//Initialization
 	void Awake ()
@@ -30,13 +33,11 @@ public class Player : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
         //camera = GetComponentInChildren<PlayerCamera>();
         ui = GetComponent<PlayerUI>();
-        weapons = GetComponentsInChildren<PlayerWeapon>();
 
 		if(controls != null) controls.self = this;
         if(status != null) status.self = this;
         if(inventory != null) inventory.self = this;
         if(camera != null) camera.self = this;
         if(ui != null) ui.self = this;
-        foreach(PlayerWeapon pw in weapons) pw.self = this;
 	}
 }

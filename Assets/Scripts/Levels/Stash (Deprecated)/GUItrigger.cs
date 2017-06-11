@@ -9,9 +9,14 @@ public class GUItrigger : MonoBehaviour {
 	public bool showText = false;
 	public GameObject Button;
 
+	public GameObject craftingWindow;
+
+	public Player player;
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player")
+		{
 			showText = true;
 
 		}
@@ -19,25 +24,26 @@ public class GUItrigger : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player")
+		{
 			showText = false;
 		}
 	}
 
-	void changeScene (){
-		if (Input.GetKeyDown (KeyCode.E) && showText == true) {
+	void PopOutUi (){
+		if (Input.GetKeyDown (KeyCode.E) && showText == true)
+		{
 			//GameObject.Find ("EventSystem").SetActive (false);
-			SceneManager.LoadScene ("UIScene",LoadSceneMode.Additive);
+			craftingWindow.SetActive(true);
+			player.controls.enabled = false;
+			player.animator.SetFloat("Speed", 0f);
 		}
 	}
-		
-			
-
 
 	void Update()
 	{
 		Button.SetActive (showText);
-		changeScene();
+		PopOutUi();
 
 	}
 

@@ -121,8 +121,8 @@ public class PlayerControls : MonoBehaviour
 
 	void UpdateAnimation()
 	{
-		GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal") * self.status.movementSpeed));
-		GetComponent<Animator>().SetBool("Grounded", grounded);
+		self.animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal") * self.status.movementSpeed));
+		self.animator.SetBool("Grounded", grounded);
 	}
 
     void OnTriggerStay2D(Collider2D other)

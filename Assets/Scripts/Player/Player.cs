@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 	public SpriteRenderer renderer;
 	public BoxCollider2D collider;
 	public Rigidbody2D rigidbody;
+	public Animator animator;
 
 	//Developer
 	public PlayerControls controls;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
 		renderer = GetComponent<SpriteRenderer>();
 		collider = GetComponent<BoxCollider2D>();
 		rigidbody = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 
 		controls = GetComponent<PlayerControls>();
 		status = GetComponent<PlayerStatus>();

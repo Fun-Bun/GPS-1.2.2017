@@ -16848,11 +16848,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: weaponSprites.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4011100632437786, guid: a6f17a79134072148b6932bfe0f79dad, type: 2}
       propertyPath: m_LocalPosition.x
       value: -6.11
@@ -16887,32 +16882,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
         type: 2}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: hungerBar.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: hungerBar.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: hungerBar.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461604740572342, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: weaponPrefab
-      value: 
-      objectReference: {fileID: 1667132809638922, guid: 4281ed730f6549e42804b3817399067f,
-        type: 2}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
       propertyPath: healthBarUp
       value: 
       objectReference: {fileID: 1696484774}
@@ -16933,63 +16902,9 @@ Prefab:
       objectReference: {fileID: 1626865824}
     - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
         type: 2}
-      propertyPath: healthBarMax
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: hungerBarMax
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: ammoBarMax
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: emptySprite
-      value: 
-      objectReference: {fileID: 21300000, guid: da8f215969474b14f99bf0954eaed9d6,
-        type: 3}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: weaponSprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: da8f215969474b14f99bf0954eaed9d6,
-        type: 3}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: weaponSprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 1562821140623224cb03e6e02f8dfada,
-        type: 3}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: weaponSprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 0f393a6aa25afc0479c8aa462cb1e3c5,
-        type: 3}
-    - target: {fileID: 114956983548554488, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
       propertyPath: selectedWeapon
       value: 
       objectReference: {fileID: 765544237}
-    - target: {fileID: 114634088632762700, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: healthDeplete.depleteAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114634088632762700, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: healthDeplete.depleteDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114634088632762700, guid: a6f17a79134072148b6932bfe0f79dad,
-        type: 2}
-      propertyPath: healthDeplete.depleteRate
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6f17a79134072148b6932bfe0f79dad, type: 2}
   m_IsPrefabParent: 0

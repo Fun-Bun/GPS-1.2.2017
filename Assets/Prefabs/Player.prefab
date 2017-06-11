@@ -144,7 +144,9 @@ MonoBehaviour:
   inventory: {fileID: 0}
   camera: {fileID: 0}
   ui: {fileID: 0}
-  weapons: []
+  ownedWeapons: []
+  weaponPrefab: {fileID: 1667132809638922, guid: 4281ed730f6549e42804b3817399067f,
+    type: 2}
 --- !u!114 &114634088632762700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,6 +164,13 @@ MonoBehaviour:
   hunger:
     value: 6
     max: 6
+  healthDeplete:
+    resource:
+      value: 0
+      max: 0
+    depleteAmount: 1
+    depleteDuration: 0.1
+    depleteRate: 1
   hungerDeplete:
     resource:
       value: 0
@@ -182,15 +191,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a014af7c3205e3f4ba0ca9da2c14d149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  hungerBar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  hungerSprites:
-  - {fileID: 21300000, guid: b65b90595923b9b4988911d85736e996, type: 3}
-  - {fileID: 21300000, guid: fd0299b43a2521b46a3af2e4975ac587, type: 3}
-  - {fileID: 21300000, guid: 5a15903d0c198604eb27c324d0428ebf, type: 3}
+  healthBarUp: {fileID: 0}
+  healthBarDown: {fileID: 0}
+  healthBarMax: 0.2
+  hungerBar: {fileID: 0}
+  hungerBarMax: 0.3
+  ammoBar: {fileID: 0}
+  ammoBarMax: 0.3
+  selectedWeapon: {fileID: 0}
+  emptySprite: {fileID: 21300000, guid: da8f215969474b14f99bf0954eaed9d6, type: 3}
+  weaponSprites:
+  - {fileID: 21300000, guid: 1562821140623224cb03e6e02f8dfada, type: 3}
+  - {fileID: 21300000, guid: 0f393a6aa25afc0479c8aa462cb1e3c5, type: 3}
+  - {fileID: 21300000, guid: da8f215969474b14f99bf0954eaed9d6, type: 3}
 --- !u!114 &114990371422758656
 MonoBehaviour:
   m_ObjectHideFlags: 1

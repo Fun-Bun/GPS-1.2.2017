@@ -48,42 +48,6 @@ public class RegularZombiePatrolAI : MonoBehaviour {
 
 		switch(rState)
 		{
-			case rAIState.idle:
-			default:
-				if(inVicinity == true)
-				{
-					rState = rAIState.triggered;
-				}
-
-				else
-				{
-					if(this.transform.position.x + rbuffer < currentPatrolPoint.transform.position.x)
-					{
-						this.transform.Translate(Time.deltaTime * rSpeed * Vector3.right);
-					}
-
-					else if(this.transform.position.x + rbuffer > currentPatrolPoint.transform.position.x)
-					{
-						this.transform.Translate(Time.deltaTime * rSpeed * Vector3.left);
-					}
-
-					if(Vector3.Distance(transform.position,currentPatrolPoint.position) < .1f) // Checking arrival on patrol point
-					{
-						if(currentPatrolIndex + 1 < patrolPoints.Length) // patrol point reached, move to next point
-						{
-							currentPatrolIndex ++;
-						}
-
-						else
-						{
-							currentPatrolIndex = 0; // Go to first point
-						}
-
-						currentPatrolPoint = patrolPoints[currentPatrolIndex];
-					}
-				}
-			break;
-
 			case rAIState.triggered:
 			if(inVicinity == false)
 			{
@@ -105,6 +69,42 @@ public class RegularZombiePatrolAI : MonoBehaviour {
 				else
 				{
 					rState = rAIState.attack;
+				}
+			}
+			break;
+
+		case rAIState.idle:
+		default:
+			if(inVicinity == true)
+			{
+				rState = rAIState.triggered;
+			}
+
+			else
+			{
+				if(this.transform.position.x + rbuffer < currentPatrolPoint.transform.position.x)
+				{
+					this.transform.Translate(Time.deltaTime * rSpeed * Vector3.right);
+				}
+
+				else if(this.transform.position.x + rbuffer > currentPatrolPoint.transform.position.x)
+				{
+					this.transform.Translate(Time.deltaTime * rSpeed * Vector3.left);
+				}
+
+				if(Vector3.Distance(transform.position,currentPatrolPoint.position) < .1f) // Checking arrival on patrol point
+				{
+					if(currentPatrolIndex + 1 < patrolPoints.Length) // patrol point reached, move to next point
+					{
+						currentPatrolIndex ++;
+					}
+
+					else
+					{
+						currentPatrolIndex = 0; // Go to first point
+					}
+
+					currentPatrolPoint = patrolPoints[currentPatrolIndex];
 				}
 			}
 			break;

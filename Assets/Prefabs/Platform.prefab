@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000915751674582}
   - component: {fileID: 61337803681587048}
   - component: {fileID: 114512715027456164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,3 +302,4 @@ MonoBehaviour:
   jumpStart2: {fileID: 1933329211879806}
   jumpEnd2: {fileID: 1328289079757188}
   whoStepOnMe: []
+  halfLength: 0

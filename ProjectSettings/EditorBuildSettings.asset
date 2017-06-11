@@ -17,3 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Saferoom.unity
     guid: 8350edebf3cc8ce4a86b04d8bcbaa447
+  - enabled: 0
+    path: Assets/UI SAMPLE SPRITES/Game.unity
+    guid: 7918c075994328e43963407ffaabbf73
+  - enabled: 1
+    path: Assets/UI SAMPLE SPRITES/Ver2 Scripts/TestScene1.unity
+    guid: 00000000000000000000000000000000

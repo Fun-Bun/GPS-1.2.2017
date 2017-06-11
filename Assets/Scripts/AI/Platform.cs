@@ -10,33 +10,40 @@ public class Platform : MonoBehaviour {
 	public GameObject jumpEnd2;
 
 	public List<GameObject> whoStepOnMe;
-		
+    
+    public float halfLength;
+	
+    void Start()
+    {
+        halfLength = GetComponent<BoxCollider2D>().bounds.extents.x;
+    }
+
 	void OnTriggerStay2D(Collider2D other)
 	{
-		if(other.tag == "Player" || other.tag == "Enemy")
+        if(other.tag == "Target" || other.tag == "Enemy")
 		{
 			if(!whoStepOnMe.Contains(other.gameObject))
 			{
 				whoStepOnMe.Add(other.gameObject);
-				if(other.tag == "Player")
-					other.GetComponent<Player>().controls.platform = this;
+                if(other.tag == "Target")
+                    other.GetComponent<TargetScript>().platform = this;
 				else if(other.tag == "Enemy")
-					other.GetComponent<ZombieAI>().platform = this;
+                    other.GetComponent<ZombieAI>().platform = this;
 			}
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if(other.tag == "Player" || other.tag == "Enemy")
+        if(other.tag == "Target" || other.tag == "Enemy")
 		{
 			if(whoStepOnMe.Contains(other.gameObject))
 			{
 				whoStepOnMe.Remove(other.gameObject);
-				if(other.tag == "Player")
-					other.GetComponent<Player>().controls.platform = null;
-				else if(other.tag == "Enemy")
-					other.GetComponent<ZombieAI>().platform = null;
+                if(other.tag == "Target")
+                    other.GetComponent<TargetScript>().platform = null;
+                else if(other.tag == "Enemy")
+                    other.GetComponent<ZombieAI>().platform = null;
 			}
 		}
 	}

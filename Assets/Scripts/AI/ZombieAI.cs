@@ -5,12 +5,17 @@ using UnityEngine;
 public class ZombieAI : MonoBehaviour {
 	public enum AIState
 	{
-		walking = 0,
+		idle = 0,
 		jumping,
 		landing,
 		dropping,
+		walking,
 		attacking
 	};
+
+	public Transform[]patrolPoints;
+	Transform currentPatrolPoint;
+	public int currentPatrolIndex;
 
 	public float buffer;
 	public float speed;
@@ -23,17 +28,47 @@ public class ZombieAI : MonoBehaviour {
 	public GameObject targetStart;
 	public GameObject targetEnd;
 
+    public bool inVicinity;
+    public GameObject targetGO;
+    public TargetScript target;
+	public float triggerRange;
+
+    public float idleTimer;
+	public float idleDuration;
+
 	public AIState state;
+
 	// Use this for initialization
 	void Start ()
 	{
 		player = GameObject.FindWithTag ("Player").GetComponent<Player> ();
+        GameObject newTarget = Instantiate(targetGO, this.transform.position, Quaternion.identity);
+        target = newTarget.GetComponent<TargetScript>();
+        target.master = this;
+        target.targetOffset = GetComponent<BoxCollider2D>().bounds.extents.y;
+        target.SetPosition(this.transform.position);
+		//for patrolling AI
+        /*
+		currentPatrolIndex = 0;
+		currentPatrolPoint = patrolPoints[currentPatrolIndex];
+        */      
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		Debug.Log(state.ToString());
+		
+        if(player != null)
+        {
+            float distanceToTarget = Vector2.Distance((Vector2)this.transform.position, (Vector2)player.gameObject.transform.position);
+    		inVicinity = distanceToTarget <= triggerRange;
+            if(inVicinity)
+            {
+                target.SetPosition(player.gameObject);
+            }
+        }
+
 		switch(state)
 		{
 			case AIState.dropping:
@@ -93,17 +128,16 @@ public class ZombieAI : MonoBehaviour {
 			break;
 
 			case AIState.walking:
-			default:
-				if(platform != null && platform.whoStepOnMe.Contains(player.gameObject))
+				if(platform != null && platform.whoStepOnMe.Contains(target.gameObject))
 				{
 					//Enter Walking State
 					state = AIState.walking;
-					if(this.transform.position.x + buffer < player.transform.position.x)
+                    if(this.transform.position.x + buffer < target.gameObject.transform.position.x)
 					{
 						//Move Right
 						this.transform.Translate(Time.deltaTime * speed * Vector3.right);
 					}
-					else if(player.transform.position.x < this.transform.position.x - buffer)
+                    else if(target.gameObject.transform.position.x < this.transform.position.x - buffer)
 					{
 						//Move Left
 						this.transform.Translate(Time.deltaTime * speed * Vector3.left);
@@ -111,17 +145,20 @@ public class ZombieAI : MonoBehaviour {
 					else
 					{
 						//Attack (Wait first)
-						state = AIState.attacking;
+                        if(inVicinity)
+							state = AIState.attacking;
+                        else
+                            state = AIState.idle;
 					}
 				}
 				else
 				{
-					if(platform != null && player.controls.platform != null)
+					if(platform != null && target.platform != null)
 					{
-						if(platform.gameObject.transform.position.y < player.controls.platform.gameObject.transform.position.y)
+                        if(platform.gameObject.transform.position.y < target.platform.gameObject.transform.position.y)
 						{
 							//Find player's platform
-							targetPlatform = player.controls.platform;
+                            targetPlatform = target.platform;
 
 							//Enter Jumping State
 							state = AIState.jumping;
@@ -152,22 +189,75 @@ public class ZombieAI : MonoBehaviour {
 					}
 					else
 					{
-						if(this.transform.position.x + buffer < player.transform.position.x)
+                        if(this.transform.position.x + buffer < target.gameObject.transform.position.x)
 						{
 							//Move Right
 							this.transform.Translate(Time.deltaTime * speed * Vector3.right);
 						}
-						else if(player.transform.position.x < this.transform.position.x - buffer)
+                        else if(target.gameObject.transform.position.x < this.transform.position.x - buffer)
 						{
 							//Move Left
 							this.transform.Translate(Time.deltaTime * speed * Vector3.left);
 						}
 						else
-						{
-							//Attack (Wait first)
-							state = AIState.attacking;
+                        {
+                            //Attack (Wait first)
+                            if(inVicinity)
+                                state = AIState.attacking;
+                            else
+                                state = AIState.idle;
 						}
 					}
+				}
+			break;
+
+			case AIState.idle:
+			default:
+				if(inVicinity)
+                {
+					state = AIState.walking;
+                }
+				else
+				{
+                    idleTimer += Time.deltaTime;
+                    if(idleTimer >= idleDuration)
+                    {
+                        idleTimer = 0;
+                        if(platform != null)
+                        {
+                            float randX = Random.Range(platform.transform.position.x - (platform.halfLength - buffer), platform.transform.position.x + (platform.halfLength - buffer));
+                            target.SetPosition(new Vector3(randX, this.transform.position.y, this.transform.position.z));
+                            
+                            state = AIState.walking;
+                        }
+                    }
+					
+				/*
+					if(this.transform.position.x + buffer < currentPatrolPoint.transform.position.x)
+					{
+						this.transform.Translate(Time.deltaTime * speed * Vector3.right);
+					}
+
+					else if(this.transform.position.x + buffer > currentPatrolPoint.transform.position.x)
+					{
+						this.transform.Translate(Time.deltaTime * speed * Vector3.left);
+					}
+
+					if(Vector3.Distance(transform.position,currentPatrolPoint.position) < .1f) // Checking arrival on patrol point
+					{
+						if(currentPatrolIndex + 1 < patrolPoints.Length) // patrol point reached, move to next point
+						{
+							currentPatrolIndex ++;
+						}
+
+						else
+						{
+							currentPatrolIndex = 0; // Go to first point
+						}
+
+						currentPatrolPoint = patrolPoints[currentPatrolIndex];
+					}
+					*/
 				}
 			break;
 		}

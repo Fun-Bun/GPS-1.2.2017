@@ -8,7 +8,12 @@ TagManager:
   - Deadly
   - Background
   - Enemy
+<<<<<<< HEAD
   - Target
+=======
+  - BGM
+  - SoundFX
+>>>>>>> UI
   layers:
   - Default
   - TransparentFX

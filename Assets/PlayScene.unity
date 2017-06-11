@@ -38482,39 +38482,39 @@ MonoBehaviour:
   - {fileID: 543568076}
   spawnTroopList:
   - prefab:
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
     spawnRatio: 16
   - prefab:
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1288700283879298, guid: e5c4fe3844e310e47bffb1dd9f4b0632, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1536453472851630, guid: 34db727f0948a7a46850c66f53068b1e, type: 2}
     spawnRatio: 8
   - prefab:
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1247512179319678, guid: 7bf86ff3103c4af46b46caef8d547cd8, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1487033040282392, guid: cad8877eed6473549bcbe0e1afc2c29b, type: 2}
     spawnRatio: 4
   - prefab:
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1288700283879298, guid: e5c4fe3844e310e47bffb1dd9f4b0632, type: 2}
-    - {fileID: 1247512179319678, guid: 7bf86ff3103c4af46b46caef8d547cd8, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1536453472851630, guid: 34db727f0948a7a46850c66f53068b1e, type: 2}
+    - {fileID: 1536453472851630, guid: 34db727f0948a7a46850c66f53068b1e, type: 2}
     spawnRatio: 2
   - prefab:
-    - {fileID: 1986458529818192, guid: 2f7235715efa847489de103d4ed26e11, type: 2}
-    - {fileID: 1288700283879298, guid: e5c4fe3844e310e47bffb1dd9f4b0632, type: 2}
-    - {fileID: 1288700283879298, guid: e5c4fe3844e310e47bffb1dd9f4b0632, type: 2}
-    - {fileID: 1288700283879298, guid: e5c4fe3844e310e47bffb1dd9f4b0632, type: 2}
-    - {fileID: 1247512179319678, guid: 7bf86ff3103c4af46b46caef8d547cd8, type: 2}
+    - {fileID: 1919523765496972, guid: f759a69e85288364385042a6a46e5d9d, type: 2}
+    - {fileID: 1536453472851630, guid: 34db727f0948a7a46850c66f53068b1e, type: 2}
+    - {fileID: 1536453472851630, guid: 34db727f0948a7a46850c66f53068b1e, type: 2}
+    - {fileID: 1536453472851630, guid: 34db727f0948a7a46850c66f53068b1e, type: 2}
+    - {fileID: 1487033040282392, guid: cad8877eed6473549bcbe0e1afc2c29b, type: 2}
     spawnRatio: 1
   spawnedClones: []
 --- !u!4 &820337980
@@ -38812,6 +38812,10 @@ Prefab:
     - target: {fileID: 61337803681587048, guid: c1b34c0f2df3192409393be20bc959c6,
         type: 2}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082514367797384, guid: c1b34c0f2df3192409393be20bc959c6, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -48651,6 +48655,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1082514367797384, guid: c1b34c0f2df3192409393be20bc959c6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: c1b34c0f2df3192409393be20bc959c6, type: 2}
@@ -58358,6 +58366,10 @@ Prefab:
     - target: {fileID: 61337803681587048, guid: c1b34c0f2df3192409393be20bc959c6,
         type: 2}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082514367797384, guid: c1b34c0f2df3192409393be20bc959c6, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:

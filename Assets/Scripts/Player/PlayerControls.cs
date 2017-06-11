@@ -93,14 +93,14 @@ public class PlayerControls : MonoBehaviour
         //Shoot
         if(Input.GetButton("Fire1"))
         {
-			if(self.ownedWeapons[0] != null)
+            if(self.ownedWeapons.Capacity > 0)
 				self.ownedWeapons[0].Shoot();
         }
 
 		//Reload
 		if(Input.GetKeyDown(KeyCode.R))
 		{
-			if(self.ownedWeapons[0] != null)
+            if(self.ownedWeapons.Capacity > 0)
 				self.ownedWeapons[0].Reload();
 		}
 
@@ -145,7 +145,7 @@ public class PlayerControls : MonoBehaviour
                         break;
 					//Debug - Directly upgrade Gun to Particle Cannon
 					case ItemType.Scrap:
-						if(self.ownedWeapons[0] != null)
+                        if(self.ownedWeapons.Capacity > 0)
 							self.ownedWeapons[0].Setup(WeaponType.ParticleCannon);
 						break;
                     //Debug - Directly eat the food

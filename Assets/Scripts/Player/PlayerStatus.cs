@@ -69,6 +69,7 @@ public class PlayerStatus : MonoBehaviour
     //Stats
     public Resource health;
     public Resource hunger;
+    public Depletable healthDeplete;
     public Depletable hungerDeplete;
 
 	//Movement
@@ -77,6 +78,7 @@ public class PlayerStatus : MonoBehaviour
 	
     void Awake()
     {
+        healthDeplete.resource = health;
         hungerDeplete.resource = hunger;
     }
 
@@ -84,6 +86,7 @@ public class PlayerStatus : MonoBehaviour
 	void Update ()
 	{
         hungerDeplete.Update(Time.deltaTime);
+        if(hunger.value <= 0) healthDeplete.Update(Time.deltaTime);
         CheckDeath();
 	}
 
@@ -92,7 +95,8 @@ public class PlayerStatus : MonoBehaviour
         if(health.value <= 0f)
         {
             Debug.Log("Player is dead.");
-            Destroy(gameObject);
+            self.ui.healthBarUp.fillAmount = self.ui.healthBarDown.fillAmount = 0f;
+            gameObject.SetActive(false);
         }
     }
 }

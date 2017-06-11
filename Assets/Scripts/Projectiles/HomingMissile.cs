@@ -35,7 +35,7 @@ public class HomingMissile : MonoBehaviour {
 	{
 		if (other.tag == "Player") 
 		{
-            other.GetComponent<Player>().status.health.Reduce(30);
+            other.GetComponent<Player>().status.health.Reduce(50);
 			Destroy (this.gameObject, 0.02f);
 		}
 	}

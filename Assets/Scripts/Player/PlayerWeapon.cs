@@ -204,14 +204,16 @@ public class PlayerWeapon : MonoBehaviour
 			case WeaponType.AK47:
 				if(state != WeaponState.Reloading && bulletCount <= 0)
 				{
-					bulletCount = 0;
+                    bulletCount = 0;
+                    reloadTimer = 0;
 					state = WeaponState.Reloading;
 				}
 				break;
 			case WeaponType.ParticleCannon:
-				if(state != WeaponState.Overheat && bulletCount <= 0)
+				if(bulletCount <= 0)
 				{
-					bulletCount = 0;
+                    bulletCount = 0;
+                    overheatTimer = 0;
 					state = WeaponState.Overheat;
 				}
 				break;

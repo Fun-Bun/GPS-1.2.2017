@@ -24,7 +24,7 @@ public class SpawningZombies : MonoBehaviour
 		}
 
 		int currentRatio = 0;
-		int chosenSpawn = Random.Range(1, total);
+		int chosenSpawn = Random.Range(1, total + 1);
 		Debug.Log(chosenSpawn);
 
 		foreach(Troop t in spawnTroopList)
@@ -35,7 +35,7 @@ public class SpawningZombies : MonoBehaviour
 			{
 				for(int i = 0; i < t.prefab.Count; i++)
 				{
-					spawnedClones.Add(Instantiate(t.prefab[i], spawnPointList[Random.Range(0, spawnPointList.Count - 1)].transform.position, Quaternion.identity));
+					spawnedClones.Add(Instantiate(t.prefab[i], spawnPointList[Random.Range(0, spawnPointList.Count)].transform.position, Quaternion.identity));
 				}
 				break;
 			}

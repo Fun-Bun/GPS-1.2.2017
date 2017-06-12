@@ -17,6 +17,11 @@ public class MainMenuManager : MonoBehaviour
 
     public SoundManager soundManager;
 
+    void Start()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Singleton").GetComponent<GameManager>().soundManager;
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Saferoom");
@@ -32,11 +37,19 @@ public class MainMenuManager : MonoBehaviour
         menuWindows[menu].SetActive(false);
     }
 
+    public void SetupBGM(GameObject slider)
+    {
+        slider.GetComponent<Slider>().value = soundManager.BGMVolume;
+    }
+
+    public void SetupSoundFX(GameObject slider)
+    {
+        slider.GetComponent<Slider>().value = soundManager.SoundFXVolume;
+    }
+
     public void ChangeBGM(GameObject slider)
     {
-        foreach(AudioSource source in soundManager.BGM)
-        {
-            source.volume = slider.GetComponent<Slider>().value;
-        }
+        soundManager.BGMVolume = slider.GetComponent<Slider>().value;
+        soundManager.SetVolume();
     }
 }

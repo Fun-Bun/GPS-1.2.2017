@@ -11,6 +11,7 @@ TagManager:
   - Target
   - BGM
   - SoundFX
+  - Singleton
   layers:
   - Default
   - TransparentFX

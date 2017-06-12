@@ -40,7 +40,7 @@ public class EnemyControllerAI : MonoBehaviour {
 	public float triggerRange;
 	public bool startTransform;
 	public bool hasTransformed;
-	public float transformTimer;
+	public float timer;
 
 	public float idleTimer;
 	public float idleDuration;
@@ -86,14 +86,17 @@ public class EnemyControllerAI : MonoBehaviour {
 				if(self.renderer.flipX) self.animator.Play("Enemy_TransformRight");
 				else self.animator.Play("Enemy_TransformLeft");
 
-				transformTimer += Time.deltaTime;
-				if(transformTimer >= 1.5f)
+				timer += Time.deltaTime;
+				if(timer >= 1.5f)
 				{
 					hasTransformed = true;
-					speed *= 3;
+					speed *= 5f;
 				}
 				return;
 			}
+
+			self.animator.SetFloat("ESpeed", self.rigidbody.velocity.y);
+			self.animator.SetBool("Midair", platform == null);
 		}
 
 		switch(state)
@@ -109,11 +112,23 @@ public class EnemyControllerAI : MonoBehaviour {
 				{
 					//Move Right
 					this.transform.Translate(Time.deltaTime * speed * Vector3.right);
+					if(hasTransformed)
+					{
+						if(platform != null) self.animator.Play("Enemy_WalkRight");
+						else self.animator.Play("Enemy_DropRight");
+					}
+					else self.animator.Play("Enemy_PreWalkRight");
 				}
 				else if(targetStart.transform.position.x < this.transform.position.x - buffer)
 				{
 					//Move Left
 					this.transform.Translate(Time.deltaTime * speed * Vector3.left);
+					if(hasTransformed)
+					{
+						if(platform != null) self.animator.Play("Enemy_WalkLeft");
+						else self.animator.Play("Enemy_DropLeft");
+					}
+					else self.animator.Play("Enemy_PreWalkLeft");
 				}
 			}
 			break;
@@ -122,16 +137,31 @@ public class EnemyControllerAI : MonoBehaviour {
 			{
 				//Move Right
 				this.transform.Translate(Time.deltaTime * speed * Vector3.right);
+				if(hasTransformed) self.animator.Play("Enemy_WalkRight");
+				else self.animator.Play("Enemy_PreWalkRight");
 			}
 			else if(targetStart.transform.position.x < this.transform.position.x - buffer)
 			{
 				//Move Left
 				this.transform.Translate(Time.deltaTime * speed * Vector3.left);
+				if(hasTransformed) self.animator.Play("Enemy_WalkLeft");
+				else self.animator.Play("Enemy_PreWalkLeft");
 			}
 			else
 			{
 				//Reached, jump now!!
 				GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+
+				if(self.renderer.flipX)
+				{
+					if(hasTransformed) self.animator.Play("Enemy_JumpRight");
+					else self.animator.Play("Enemy_PreWalkRight");
+				}
+				else
+				{
+					if(hasTransformed) self.animator.Play("Enemy_JumpLeft");
+					else self.animator.Play("Enemy_PreWalkLeft");
+				}
 				state = AIState.landing;
 			}
 			break;
@@ -141,11 +171,17 @@ public class EnemyControllerAI : MonoBehaviour {
 			{
 				//Move Right
 				this.transform.Translate(Time.deltaTime * speed * Vector3.right);
+				//if(hasTransformed) self.animator.Play("Enemy_WalkRight");
+				if(hasTransformed) self.animator.Play("Enemy_LandRight");
+				else self.animator.Play("Enemy_PreWalkRight");
 			}
 			else if(targetEnd.transform.position.x < this.transform.position.x - buffer)
 			{
 				//Move Left
 				this.transform.Translate(Time.deltaTime * speed * Vector3.left);
+				//if(hasTransformed) self.animator.Play("Enemy_WalkLeft");
+				if(hasTransformed) self.animator.Play("Enemy_LandLeft");
+				else self.animator.Play("Enemy_PreWalkLeft");
 			}
 			else
 			{
@@ -175,9 +211,13 @@ public class EnemyControllerAI : MonoBehaviour {
 				}
 				else
 				{
-					//Attack (Wait first)
+					//Attack
 					if(inVicinity)
+					{
 						state = AIState.attacking;
+						self.melee.hasHit = false;
+						timer = 0f;
+					}
 					else
 						state = AIState.idle;
 				}
@@ -236,16 +276,31 @@ public class EnemyControllerAI : MonoBehaviour {
 					}
 					else
 					{
-						//Attack (Wait first)
+						//Attack
 						if(inVicinity)
+						{
 							state = AIState.attacking;
+							self.melee.hasHit = false;
+							timer = 0f;
+						}
 						else
 							state = AIState.idle;
 					}
 				}
 			}
 			break;
+		case AIState.attacking:
+			timer += Time.deltaTime;
 
+			if(self.renderer.flipX) self.animator.Play("Enemy_AttackRight");
+			else self.animator.Play("Enemy_AttackLeft");
+
+			if(timer >= 0.7f)
+			{
+				timer = 0f;
+				state = AIState.walking;
+			}
+			break;
 		case AIState.idle:
 		default:
 			if(hasTransformed)
@@ -306,12 +361,6 @@ public class EnemyControllerAI : MonoBehaviour {
 			}
 			break;
 		}
-
-		UpdateAnimation();
 	}
 
-	void UpdateAnimation()
-	{
-		self.animator.SetFloat("ESpeed", Input.GetAxis("Horizontal") * self.status.movementSpeed);
-	}
 }

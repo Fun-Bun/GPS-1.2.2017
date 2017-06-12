@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 	//Developer
 	public EnemyControllerAI controls;
 	public EnemyStatus status;
+	public EnemyMelee melee;
 
 	//Weapon Prefab
 
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
 
 		controls = GetComponent<EnemyControllerAI>();
 		status = GetComponent<EnemyStatus>();
+		melee = GetComponentInChildren<EnemyMelee>();
 		//camera = GetComponentInChildren<PlayerCamera>();
 
 		if(controls != null) controls.self = this;

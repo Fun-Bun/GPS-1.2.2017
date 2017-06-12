@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public BlueprintStorage blueprintStorage;
+
 	//System
 	public SpriteRenderer renderer;
 	public BoxCollider2D collider;

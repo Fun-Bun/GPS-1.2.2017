@@ -2,24 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DropReason
-{
-    Intentionally = 0,
-    FullInventory
-}
-
 public class PlayerInventory : MonoBehaviour
 {
     [System.NonSerialized]
 	public Player self;
 
     public List<Item> items;
-    public Resource occupiedSpace;
+	public List<Blueprint> unlockedBlueprints;
 
 	// Use this for initialization
 	void Start ()
 	{
-		
+		for(int i = 0; i < (int)ItemType.TotalItems; i++)
+		{
+			items.Add(new Item((ItemType)i, 0));
+		}
+
+		unlockedBlueprints.Add(self.blueprintStorage.blueprintList[0]);
 	}
 	
 	// Update is called once per frame
@@ -28,37 +27,34 @@ public class PlayerInventory : MonoBehaviour
 		
     }
 
-    public void AddItem(ItemType type, int amount)
-    {
-        for(int i = amount; i >= 0; i--)
-        {
-            if(occupiedSpace.Extend(Item.GetWeight(type)) > 0)
-            {
-                DropItem(type, i, DropReason.FullInventory);
-                break;
-            }
+	public void AddItem(ItemType type, int amount)
+	{
+		if(type == ItemType.None) return;
 
-            items.Add(new Item(type));
-        }
-    }
+		items[(int)type].amount += amount;
+	}
 
-    public void DropItem(ItemType type, int amount, DropReason reason = DropReason.Intentionally)
-    {
-        for(int i = amount; i >= 0; i--)
-        {
-            Item sample = new Item(type);
-            if(!items.Contains(sample)) break;
+	public void RemoveItem(ItemType type, int amount)
+	{
+		if(type == ItemType.None) return;
 
-            if(reason == DropReason.Intentionally)
-            {
-                occupiedSpace.Reduce(Item.GetWeight(type));
-            }
-            else if(reason == DropReason.FullInventory)
-            {
-                //Drop Item
-            }
-            
-            items.Remove(sample);
-        }
-    }
+		items[(int)type].amount -= amount;
+		if(items[(int)type].amount < 0) items[(int)type].amount = 0;
+	}
+
+	public void DropItem(ItemType type, int amount)
+	{
+		if(type == ItemType.None) return;
+
+		RemoveItem(type, amount);
+
+		//Drop Item
+	}
+
+	public bool HasEnoughItem(ItemType type, int amount)
+	{
+		if(type == ItemType.None) return true;
+
+		return items[(int)type].amount >= amount;
+	}
 }

@@ -122,9 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  occupiedSpace:
-    value: 0
-    max: 50
+  unlockedBlueprints: []
 --- !u!114 &114461604740572342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,9 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2acffbb2b21394f95b665cd1a7457e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueprintStorage: {fileID: 114413214888867268, guid: 8a03d063f96262c44af60e0b272af18a,
+    type: 2}
   renderer: {fileID: 0}
   collider: {fileID: 0}
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   controls: {fileID: 0}
   status: {fileID: 0}
   inventory: {fileID: 0}

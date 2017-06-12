@@ -78,8 +78,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac10e63ec8c920448a5b45c8dc08ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  amount: 1
+  itemSpriteStorage: {fileID: 114176194746252602, guid: 77b839a3b15ec1f4fa4aebf4fd0d7f8f,
+    type: 2}
+  data:
+    type: 0
+    amount: 0
+    sprite: {fileID: 0}
 --- !u!212 &212116508219431160
 SpriteRenderer:
   m_ObjectHideFlags: 1

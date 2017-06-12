@@ -135,7 +135,10 @@ public class PlayerControls : MonoBehaviour
             if(other.tag == "Item")
             {
                 DroppedItem drop = other.GetComponent<DroppedItem>();
-                switch(drop.type)
+
+				self.inventory.AddItem(drop.data.type, drop.data.amount);
+				
+                switch(drop.data.type)
                 {
                     //Debug - Directly use Gun
                     case ItemType.Gun:
@@ -152,9 +155,6 @@ public class PlayerControls : MonoBehaviour
                     case ItemType.Food:
                         self.status.health.Extend(self.status.health.max);
                         self.status.hunger.Extend(self.status.hunger.max);
-                        break;
-                    default:
-                        self.inventory.AddItem(drop.type, drop.amount);
                         break;
                 }
                 interacting = false;

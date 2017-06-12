@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
-    public ZombieAI master;
+	public EnemyControllerAI master;
     public Platform platform;
 
     public float targetOffset;

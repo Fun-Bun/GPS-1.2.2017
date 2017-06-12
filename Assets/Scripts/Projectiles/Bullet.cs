@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     {
 		if(other.gameObject.tag == "Enemy")
         {
-			Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
+			EnemyStatus enemyScript = other.gameObject.GetComponent<EnemyStatus>();
 
 			if(miss)
 			    enemyScript.FloatingText("MISS");

@@ -3,54 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
-{
-	//System
-	public SpriteRenderer renderer;
-	public BoxCollider2D collider;
-	public Rigidbody2D rigidbody;
-	public Animator animator;
+public class EnemyStatus : MonoBehaviour {
+	[System.NonSerialized]
+	public Enemy self;
 
-	//Developer
-	public EnemyControllerAI controls;
-	public EnemyStatus status;
-
-	//Weapon Prefab
-
-	//Initialization
-	void Awake ()
-	{
-		renderer = GetComponent<SpriteRenderer>();
-		collider = GetComponent<BoxCollider2D>();
-		rigidbody = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
-
-		controls = GetComponent<EnemyControllerAI>();
-		status = GetComponent<EnemyStatus>();
-		//camera = GetComponentInChildren<PlayerCamera>();
-
-		if(controls != null) controls.self = this;
-		if(status != null) status.self = this;
-	}
-
-	/*
-    public float HP = 10f;
+	public float HP = 10f;
 	public GameObject damageIndicator;
 	public float attackStats = 1;
 
+	//Movement
+	public float movementSpeed;
+	public float jumpHeight;
+
 	void Update()
-    {
-        if(HP <= 0) Destroy(gameObject);
-    }
+	{
+		if(HP <= 0) Destroy(gameObject);
+	}
 
 	public void Hurt(bool isCrit)
 	{
 		float finalDmg = attackStats * (isCrit ? 3 : 1);
 		HP -= finalDmg;
-	     
+
 		FloatingText(finalDmg.ToString(), (int)finalDmg, (isCrit ? Color.red : Color.yellow));
 	}
-	 
+
 	public void FloatingText(string text, int damage = 1, Color? textColor = null)
 	{
 		GameObject textGO = Instantiate(damageIndicator);
@@ -62,7 +39,7 @@ public class Enemy : MonoBehaviour
 		tempText.alignment = TextAnchor.MiddleCenter;
 		tempText.text = text;
 		tempText.color = textColor ?? Color.white;
-	    
+
 		RectTransform tempRect = textGO.GetComponent<RectTransform>();
 		tempRect.transform.position = transform.position + (Vector3.up * 0.4f);
 		tempRect.transform.localScale = damageIndicator.transform.localScale / 3 * damage;
@@ -71,5 +48,4 @@ public class Enemy : MonoBehaviour
 
 		Destroy(textGO, 0.3f);
 	}
-	*/
 }

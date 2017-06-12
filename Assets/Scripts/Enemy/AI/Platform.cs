@@ -28,7 +28,7 @@ public class Platform : MonoBehaviour {
                 if(other.tag == "Target")
                     other.GetComponent<TargetScript>().platform = this;
 				else if(other.tag == "Enemy")
-                    other.GetComponent<ZombieAI>().platform = this;
+					other.GetComponent<EnemyControllerAI>().platform = this;
 			}
 		}
 	}
@@ -43,7 +43,7 @@ public class Platform : MonoBehaviour {
                 if(other.tag == "Target")
                     other.GetComponent<TargetScript>().platform = null;
                 else if(other.tag == "Enemy")
-                    other.GetComponent<ZombieAI>().platform = null;
+					other.GetComponent<EnemyControllerAI>().platform = null;
 			}
 		}
 	}

@@ -6,24 +6,24 @@ using System.Linq;
 public class TileSpawner : MonoBehaviour
 {
 	public GameObject copy;
-	public int sizeX;
-	public int sizeY;
+	public int halfSizeX;
+    public int halfSizeY;
 	public float distance;
 
 	// Use this for initialization
 	public void CreateTiles ()
 	{
-		for(int i = -sizeY; i <= sizeY; i++)
+        for(int i = -halfSizeY; i <= halfSizeY; i++)
 		{
 			GameObject currentParent = new GameObject();
 			currentParent.transform.SetParent(gameObject.transform);
-			currentParent.name = "Y_" + (i + sizeY).ToString();
+            currentParent.name = "Y_" + (i + halfSizeY).ToString();
 
-			for(int j = -sizeX; j <= sizeX; j++)
+            for(int j = -halfSizeX; j <= halfSizeX; j++)
 			{
 				GameObject go = Instantiate(copy, ((Vector3.up * i) + (Vector3.right * j)) * distance, Quaternion.identity);
 				go.transform.SetParent(currentParent.transform);
-				go.name = "X_" + (j + sizeX).ToString();
+                go.name = "X_" + (j + halfSizeX).ToString();
 			}
 		}
 	}

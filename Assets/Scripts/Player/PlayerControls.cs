@@ -115,7 +115,7 @@ public class PlayerControls : MonoBehaviour
 
 	void UpdatePhysics()
 	{
-		grounded = Physics2D.OverlapCircle ((Vector2)transform.position + (Vector2.down * distToGround), 0.01f, groundLayer);
+		grounded = Physics2D.OverlapCircle ((Vector2)transform.position + (Vector2.down * distToGround), 0.5f, groundLayer);
 		if(grounded) hasDoubleJumped = false;
 	}
 
@@ -147,7 +147,7 @@ public class PlayerControls : MonoBehaviour
 						self.ownedWeapons.Add(newGun.GetComponent<PlayerWeapon>());
                         break;
 					//Debug - Directly upgrade Gun to Particle Cannon
-					case ItemType.Scrap:
+					case ItemType.Ammo:
                         if(self.ownedWeapons.Capacity > 0)
 							self.ownedWeapons[0].Setup(WeaponType.ParticleCannon);
 						break;

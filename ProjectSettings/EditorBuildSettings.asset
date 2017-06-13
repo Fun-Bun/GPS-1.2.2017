@@ -6,14 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Singleton.unity
+    guid: 5856c735e0a9f08489a741189351d876
+  - enabled: 1
     path: Assets/MainMenu.unity
     guid: 2223100c033441f4db55d95d2e426d16
   - enabled: 1
+    path: Assets/Tutorial1.unity
+    guid: 36ca5cb3d59d2324b9a579ae0938ab69
+  - enabled: 1
+    path: Assets/Tutorial2.unity
+    guid: 34119e48837001048a949663519f376a
+  - enabled: 1
+    path: Assets/Tutorial3.unity
+    guid: c431b231edceaee47925a96c63f6bd6d
+  - enabled: 1
+    path: Assets/Tutorial4.unity
+    guid: 1288821c9023ca145b1ead422b4b9159
+  - enabled: 1
     path: Assets/Saferoom.unity
     guid: 6d210d30371f2884c9bec5607bdda343
-  - enabled: 1
-    path: Assets/PlayScene.unity
-    guid: 1d19442ffb05fa94fb11c998ef26bb68
-  - enabled: 1
-    path: Assets/UIScene.unity
-    guid: 180c3690695d19749ac7b495a5575704

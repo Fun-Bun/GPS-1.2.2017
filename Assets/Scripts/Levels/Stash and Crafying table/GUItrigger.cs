@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GUItrigger : MonoBehaviour {
-
-
+public class GUItrigger : MonoBehaviour
+{
 	public bool showText = false;
 	public GameObject Button;
 
@@ -30,21 +29,20 @@ public class GUItrigger : MonoBehaviour {
 		}
 	}
 
-	void PopOutUi (){
+	void PopOutUi ()
+    {
 		if (Input.GetKeyDown (KeyCode.E) && showText == true)
 		{
 			//GameObject.Find ("EventSystem").SetActive (false);
 			craftingWindow.SetActive(true);
-			player.controls.enabled = false;
-			player.animator.SetFloat("Speed", 0f);
+            player.DisableControls();
 		}
 	}
 
 	void Update()
 	{
-		Button.SetActive (showText);
+        Button.SetActive (showText && !craftingWindow.activeSelf);
 		PopOutUi();
-
 	}
 
 }

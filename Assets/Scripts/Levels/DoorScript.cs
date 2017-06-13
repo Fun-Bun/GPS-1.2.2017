@@ -3,23 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DoorScript : MonoBehaviour {
+public class DoorScript : MonoBehaviour
+{
+    public string sceneName;
+    bool isTriggered;
+    float animTimer;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        isTriggered = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        if(isTriggered)
+        {
+            animTimer += Time.deltaTime;
+            if(animTimer > 2f)
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+        }
 	}
 
 	void OnTriggerStay2D(Collider2D other)
 	{
-		if(other.name == "Player")
+        if(other.tag == "Player" && !isTriggered)
 		{
-			SceneManager.LoadScene("PlayScene");
+            isTriggered = true;
+            other.GetComponent<Player>().DisableControls();
+            GetComponent<Animator>().Play("NormalDoor_Opening");
 		}
 	}
 }

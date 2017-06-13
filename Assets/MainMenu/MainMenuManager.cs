@@ -13,6 +13,7 @@ public enum Menu
 
 public class MainMenuManager : MonoBehaviour
 {
+    public string startGameScene;
     public List<GameObject> menuWindows;
 
     public SoundManager soundManager;
@@ -24,7 +25,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Saferoom");
+        SceneManager.LoadScene(startGameScene);
     }
 
     public void OpenMenu(int menu)

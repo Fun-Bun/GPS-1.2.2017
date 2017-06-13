@@ -10,6 +10,6 @@ public class CloseWindow : MonoBehaviour {
 	public void Close ()
 	{
 		craftingWindow.SetActive(false);
-		player.controls.enabled = true;
+        player.EnableControls();
 	}
 }

@@ -43,5 +43,17 @@ public class Player : MonoBehaviour
         if(inventory != null) inventory.self = this;
         if(camera != null) camera.self = this;
         if(ui != null) ui.self = this;
-	}
+    }
+
+    public void EnableControls()
+    {
+        controls.enabled = true;
+    }
+
+    public void DisableControls()
+    {
+        controls.enabled = false;
+        animator.SetFloat("Speed", 0f);
+        animator.SetBool("Grounded", true);
+    }
 }

@@ -8,6 +8,10 @@ TagManager:
   - Deadly
   - Background
   - Enemy
+  - Target
+  - BGM
+  - SoundFX
+  - Singleton
   layers:
   - Default
   - TransparentFX
@@ -19,8 +23,8 @@ TagManager:
   - 
   - Transparent_Tiles
   - Solid_Tiles
-  - 
-  - 
+  - Target
+  - Platform
   - 
   - 
   - 

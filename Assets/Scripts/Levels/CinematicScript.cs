@@ -19,6 +19,10 @@ public class CinematicScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+		//
+		SoundManagerScript.Instance.StopBGM();
+		SoundManagerScript.Instance.PlayBGM(AudioClipID.BGM_LEVEL1);
+
         currentScene = 0;
         currentSceneTime = 0f;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();

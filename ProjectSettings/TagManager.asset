@@ -12,6 +12,8 @@ TagManager:
   - BGM
   - SoundFX
   - Singleton
+  - PrefabManager
+  - SoundManager
   layers:
   - Default
   - TransparentFX

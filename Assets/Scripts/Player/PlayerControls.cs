@@ -46,6 +46,13 @@ public class PlayerControls : MonoBehaviour
 
 			//Flip if value is negative (going left)
 			self.renderer.flipX = Input.GetAxis("Horizontal") > 0f;
+
+			//Play SFX
+			SoundManagerScript.Instance.PlayLoopingSFX(AudioClipID.SFX_WALKING);
+		}
+		else
+		{
+			SoundManagerScript.Instance.StopLoopingSFX(AudioClipID.SFX_WALKING);
 		}
 
 		//Jump
@@ -73,6 +80,9 @@ public class PlayerControls : MonoBehaviour
 
 				//Add force to the player impulsively (to surpass the gravity force)
 				self.rigidbody.AddForce(Vector2.up * self.status.jumpHeight, ForceMode2D.Impulse);
+
+				//SFX
+				SoundManagerScript.Instance.PlaySFX(AudioClipID.SFX_JUMPING);
 			}
 		}
 

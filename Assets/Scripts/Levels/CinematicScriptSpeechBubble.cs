@@ -14,6 +14,10 @@ public class CinematicScriptSpeechBubble : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+		//BGM
+		SoundManagerScript.Instance.StopBGM();
+		SoundManagerScript.Instance.PlayBGM(AudioClipID.BGM_LEVEL2);
+
         currentScene = 0;
         currentSceneTime = 0f;
 	}

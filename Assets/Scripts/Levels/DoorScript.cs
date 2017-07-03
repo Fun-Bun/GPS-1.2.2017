@@ -33,6 +33,7 @@ public class DoorScript : MonoBehaviour
         if(other.tag == "Player" && !isTriggered)
 		{
             isTriggered = true;
+			SoundManagerScript.Instance.StopLoopingSFX(AudioClipID.SFX_WALKING);
             other.GetComponent<Player>().DisableControls();
             GetComponent<Animator>().Play("NormalDoor_Opening");
 		}

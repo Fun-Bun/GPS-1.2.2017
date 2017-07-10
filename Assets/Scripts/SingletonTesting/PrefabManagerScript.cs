@@ -28,4 +28,5 @@ public class PrefabManagerScript : MonoBehaviour
 	}
 
 	public GameObject soundManagerPrefab;
+	public GameObject UIManagerPrefab;
 }

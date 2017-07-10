@@ -53,3 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundManagerPrefab: {fileID: 1168695651627244, guid: fd8fa73cfd124cb4d93a7dfb0503b4eb,
     type: 2}
+  UIManagerPrefab: {fileID: 1606645523463338, guid: 8f1deebb1f937cc4c85784aa37368a4e,
+    type: 2}

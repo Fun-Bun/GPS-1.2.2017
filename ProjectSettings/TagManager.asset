@@ -14,6 +14,11 @@ TagManager:
   - Singleton
   - PrefabManager
   - SoundManager
+  - Hat1
+  - Hat2
+  - Hat3
+  - Hat4
+  - Hat5
   layers:
   - Default
   - TransparentFX

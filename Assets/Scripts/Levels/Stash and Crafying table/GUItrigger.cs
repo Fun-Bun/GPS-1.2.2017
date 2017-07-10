@@ -8,7 +8,7 @@ public class GUItrigger : MonoBehaviour
 	public bool showText = false;
 	public GameObject Button;
 
-	public GameObject craftingWindow;
+	public GameObject ShopWindow;
 
 	public Player player;
 
@@ -33,15 +33,22 @@ public class GUItrigger : MonoBehaviour
     {
 		if (Input.GetKeyDown (KeyCode.E) && showText == true)
 		{
+			SoundManagerScript.Instance.StopLoopingSFX(AudioClipID.SFX_WALKING);
 			//GameObject.Find ("EventSystem").SetActive (false);
-			craftingWindow.SetActive(true);
+			ShopWindow.SetActive(true);
             player.DisableControls();
 		}
 	}
 
+	public void CloseShop()
+	{
+		ShopWindow.SetActive (false);
+		player.EnableControls();
+	}
+
 	void Update()
 	{
-        Button.SetActive (showText && !craftingWindow.activeSelf);
+		Button.SetActive (showText && !ShopWindow.activeSelf);
 		PopOutUi();
 	}
 

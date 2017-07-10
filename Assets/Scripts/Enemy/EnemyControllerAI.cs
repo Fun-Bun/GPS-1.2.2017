@@ -6,6 +6,7 @@ public class EnemyControllerAI : MonoBehaviour {
 
 	[System.NonSerialized]
 	public Enemy self;
+    public EnemyStatus status;
 
 	public enum AIState
 	{
@@ -14,7 +15,8 @@ public class EnemyControllerAI : MonoBehaviour {
 		landing,
 		dropping,
 		walking,
-		attacking
+		attacking,
+       // death
 	};
 
 	public Transform[]patrolPoints;
@@ -101,6 +103,11 @@ public class EnemyControllerAI : MonoBehaviour {
 				}
 				return;
 			}
+
+            /*if(status.HP <= 0)
+            {
+                state = AIState.death;
+            }*/
         }
 
 		switch(state)
@@ -116,13 +123,13 @@ public class EnemyControllerAI : MonoBehaviour {
 				{
 					//Move Right
                     this.transform.Translate(Time.deltaTime * speed * Vector3.right);
-                    self.renderer.flipX = true;
+                    this.transform.localScale = new Vector3(-0.65f,0.65f,1);
 				}
 				else if(targetStart.transform.position.x < this.transform.position.x - buffer)
 				{
 					//Move Left
                     this.transform.Translate(Time.deltaTime * speed * Vector3.left);
-                    self.renderer.flipX = false;
+                    this.transform.localScale = new Vector3(0.65f,0.65f,1);
                 }
                     /*
                 if(hasTransformed)
@@ -138,7 +145,7 @@ public class EnemyControllerAI : MonoBehaviour {
 			{
 				//Move Right
 				this.transform.Translate(Time.deltaTime * speed * Vector3.right);
-                self.renderer.flipX = true;
+                this.transform.localScale = new Vector3(-0.65f,0.65f,1);
 				//if(hasTransformed) self.animator.Play("Enemy_WalkLeft");
 				//else self.animator.Play("Enemy_PreWalkLeft");
 			}
@@ -146,7 +153,7 @@ public class EnemyControllerAI : MonoBehaviour {
 			{
                 //Move Left
                 this.transform.Translate(Time.deltaTime * speed * Vector3.left);
-                self.renderer.flipX = false;
+                this.transform.localScale = new Vector3(0.65f,0.65f,1);
 				//if(hasTransformed) self.animator.Play("Enemy_WalkLeft");
 				//else self.animator.Play("Enemy_PreWalkLeft");
 			}
@@ -196,7 +203,7 @@ public class EnemyControllerAI : MonoBehaviour {
 				{
 					//Move Right
 					this.transform.Translate(Time.deltaTime * speed * Vector3.right);
-                    self.renderer.flipX = true;
+                    this.transform.localScale = new Vector3(-0.65f,0.65f,1);
 					//if(hasTransformed) self.animator.Play("Enemy_WalkRight");
 					//else self.animator.Play("Enemy_PreWalkRight");
 				}
@@ -204,7 +211,7 @@ public class EnemyControllerAI : MonoBehaviour {
 				{
 					//Move Left
                     this.transform.Translate(Time.deltaTime * speed * Vector3.left);
-                    self.renderer.flipX = false;
+                    this.transform.localScale = new Vector3(0.65f,0.65f,1);
 					//if(hasTransformed) self.animator.Play("Enemy_WalkLeft");
 					//else self.animator.Play("Enemy_PreWalkLeft");
 				}
@@ -263,7 +270,7 @@ public class EnemyControllerAI : MonoBehaviour {
 					{
 						//Move Right
                         this.transform.Translate(Time.deltaTime * speed * Vector3.right);
-                        self.renderer.flipX = true;
+                        this.transform.localScale = new Vector3(-0.65f,0.65f,1);
 						//if(hasTransformed) self.animator.Play("Enemy_WalkRight");
 						//else self.animator.Play("Enemy_PreWalkRight");
 					}
@@ -271,7 +278,7 @@ public class EnemyControllerAI : MonoBehaviour {
 					{
 						//Move Left
                         this.transform.Translate(Time.deltaTime * speed * Vector3.left);
-                        self.renderer.flipX = false;
+                        this.transform.localScale = new Vector3(0.65f,0.65f,1);
 						//if(hasTransformed) self.animator.Play("Enemy_WalkLeft");
 						//else self.animator.Play("Enemy_PreWalkLeft");
 					}
@@ -303,6 +310,11 @@ public class EnemyControllerAI : MonoBehaviour {
 				state = AIState.walking;
 			}
 			break;
+
+        /*case AIState.death:
+            self.animator.Play("Enemy_Death");
+            break;*/
+
 		case AIState.idle:
 		default:
 			if(hasTransformed)
@@ -367,4 +379,12 @@ public class EnemyControllerAI : MonoBehaviour {
         }
 	}
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "PlayerBullet")
+        {
+            Debug.Log("HIT!");
+            startTransform = true;
+        }
+    }
 }

@@ -9,20 +9,16 @@ public class PlayerUI : MonoBehaviour
 	public Player self;
 
     //UIs
-    public Image healthBarUp;
-    public Image healthBarDown;
-    public float healthBarMax;
+	public Image[] healthImages;
 
-    public Image hungerBar;
-    public float hungerBarMax;
-
-    public Image ammoBar;
-    public float ammoBarMax;
+	public GameObject ammoBar;
+	public Image[] ammoImages;
 
     public Image selectedWeapon;
-
-    public Sprite emptySprite;
-    public List<Sprite> weaponSprites;
+	
+	public List<Sprite> weaponSprites;
+	public List<Sprite> healthSprites;
+	public List<Sprite> ammoSprites;
 
 	// Use this for initialization
 	void Start ()
@@ -33,39 +29,36 @@ public class PlayerUI : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        UpdateHunger();
-        UpdateHealth();
+		UpdateHealth();
+		UpdateWeaponImage();
         UpdateAmmo();
-        UpdateWeaponImage();
 	}
 
-    void UpdateHealth()
+    public void UpdateHealth()
     {
-        healthBarUp.fillAmount = healthBarDown.fillAmount = self.status.health.GetPercent() * healthBarMax;
-    }
-
-    void UpdateHunger()
-    {
-        hungerBar.fillAmount = self.status.hunger.GetPercent() * hungerBarMax;
-
-        /*
-        for(int i = 0; i < self.status.hunger.max / 2; i++)
+        for(int i = 0; i < self.status.health.max / 2; i++)
         {
-            int calculation = self.status.hunger.value - (2 * i);
+			int cal = self.status.health.value - (2 * i);
 
-            if(calculation >= 2) hungerBar[i].sprite = hungerSprites[0];
-            else if(calculation >= 1) hungerBar[i].sprite = hungerSprites[1];
-            else hungerBar[i].sprite = hungerSprites[2];
+			if(cal >= 2) healthImages[i].sprite = healthSprites[2];
+			else if(cal >= 1) healthImages[i].sprite = healthSprites[1];
+			else healthImages[i].sprite = healthSprites[0];
         }
-        */
     }
 
 	void UpdateAmmo()
 	{
-        if(self.ownedWeapons.Capacity > 0)
-            ammoBar.fillAmount = ((float)self.ownedWeapons[0].bulletCount / (float)self.ownedWeapons[0].bulletMax) * ammoBarMax;
-        else
-            ammoBar.fillAmount = 0f;
+		if(self.ownedWeapons.Capacity > 0)
+		{
+			ammoBar.SetActive(true);
+			for(int i = 0; i < self.ownedWeapons[0].bullet.max; i++)
+			{
+				int cal = self.ownedWeapons[0].bullet.value - i;
+
+				if(cal >= 1) ammoImages[i].sprite = ammoSprites[1];
+				else ammoImages[i].sprite = ammoSprites[0];
+			}
+		}
 	}
 
     void UpdateWeaponImage()

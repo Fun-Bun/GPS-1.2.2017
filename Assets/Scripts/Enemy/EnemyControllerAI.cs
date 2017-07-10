@@ -70,7 +70,7 @@ public class EnemyControllerAI : MonoBehaviour {
 	void Update ()
     {
         Debug.Log(state.ToString());
-        Debug.Log(self.animator.GetCurrentAnimatorStateInfo(0).nameHash.ToString());
+		Debug.Log(self.animator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString());
 
         self.animator.SetBool("IsMoving", state == AIState.walking || state == AIState.jumping || state == AIState.dropping);
         self.animator.SetFloat("VSpeed", self.rigidbody.velocity.y);

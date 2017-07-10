@@ -115,7 +115,7 @@ public class PlayerControls : MonoBehaviour
 
 	void UpdatePhysics()
 	{
-		grounded = Physics2D.OverlapCircle ((Vector2)transform.position + (Vector2.down * distToGround), 0.5f, groundLayer);
+		grounded = Physics2D.OverlapCircle ((Vector2)transform.position + (Vector2.down * distToGround * 1.2f), 0.15f, groundLayer);
 		if(grounded) hasDoubleJumped = false;
 	}
 
@@ -154,7 +154,6 @@ public class PlayerControls : MonoBehaviour
                     //Debug - Directly eat the food
                     case ItemType.Food:
                         self.status.health.Extend(self.status.health.max);
-                        self.status.hunger.Extend(self.status.hunger.max);
                         break;
                 }
                 interacting = false;

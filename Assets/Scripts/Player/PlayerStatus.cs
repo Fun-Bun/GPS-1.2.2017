@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Resource
 {
     public int value;
     public int max;
-
 
     public float GetPercent()
     {
@@ -68,9 +68,7 @@ public class PlayerStatus : MonoBehaviour
 
     //Stats
     public Resource health;
-    public Resource hunger;
-    public Depletable healthDeplete;
-    public Depletable hungerDeplete;
+    //public Depletable healthDeplete;
 
 	//Movement
 	public float movementSpeed;
@@ -78,25 +76,24 @@ public class PlayerStatus : MonoBehaviour
 	
     void Awake()
     {
-        healthDeplete.resource = health;
-        hungerDeplete.resource = hunger;
+        //healthDeplete.resource = health;
     }
 
 	// Update is called once per frame
 	void Update ()
 	{
-        hungerDeplete.Update(Time.deltaTime);
-        if(hunger.value <= 0) healthDeplete.Update(Time.deltaTime);
+        //healthDeplete.Update(Time.deltaTime);
         CheckDeath();
 	}
 
     void CheckDeath()
     {
-        if(health.value <= 0f)
+        if(health.value <= 0)
         {
             Debug.Log("Player is dead.");
-            self.ui.healthBarUp.fillAmount = self.ui.healthBarDown.fillAmount = 0f;
-            gameObject.SetActive(false);
+			self.ui.UpdateHealth();
+			gameObject.SetActive(false);
+			SceneManager.LoadScene("Singleton");
         }
     }
 }

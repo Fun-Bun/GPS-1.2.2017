@@ -5,12 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public bool crit;
-    public bool miss;
 
     // Use this for initialization
     void Start ()
     {
-		Destroy(gameObject, 1.0f);
+		
 	}
 
     void OnTriggerEnter2D(Collider2D other) //Commonly, we use "other" as like to show that this collider is the another object we bump into
@@ -19,16 +18,17 @@ public class Bullet : MonoBehaviour
         {
 			EnemyStatus enemyScript = other.gameObject.GetComponent<EnemyStatus>();
 
-			if(miss)
-			    enemyScript.FloatingText("MISS");
-			else
-				enemyScript.Hurt(crit);
+			enemyScript.Hurt(crit);
 			
 			Destroy(gameObject);
         }
 		else if(other.gameObject.tag == "Deadly")
 		{
 			Destroy(other.gameObject);
+			Destroy(gameObject);
+		}
+		else if(other.gameObject.layer == 1 << LayerMask.NameToLayer("SolidTiles"))
+		{
 			Destroy(gameObject);
 		}
     }

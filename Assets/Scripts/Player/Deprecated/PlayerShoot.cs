@@ -35,8 +35,6 @@ public class PlayerShoot : MonoBehaviour
 					newBullet.transform.LookAt(Vector3.forward + newBullet.transform.position,fire_at_cursor);
 					//newBullet.transform.LookAt(transform.forward + (Vector3)fire_at_cursor, ;
 					Bullet buletScript = newBullet.GetComponent<Bullet>();
-					buletScript.miss = Random.Range(0, 100) > accuracy;
-					if(!buletScript.miss) buletScript.crit = Random.Range(0, 100) < critChance;
 
 					cdTimer = cooldown;
 				}

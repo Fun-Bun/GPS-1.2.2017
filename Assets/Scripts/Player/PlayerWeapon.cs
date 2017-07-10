@@ -26,8 +26,7 @@ public class PlayerWeapon : MonoBehaviour
 	public WeaponType type;
 
 	//Condition
-	public int bulletCount;
-	public int bulletMax;
+	public Resource bullet;
 
 	public WeaponState state;
 
@@ -45,7 +44,7 @@ public class PlayerWeapon : MonoBehaviour
 	private float overheatTimer;
 
 	//Bullet
-	public List<GameObject> bullet;
+	public List<GameObject> bulletGOs;
 	public List<float> bulletSpeed;
 
 	// Use this for initialization
@@ -60,19 +59,19 @@ public class PlayerWeapon : MonoBehaviour
 		switch(type)
 		{
 			case WeaponType.AK47:
-				bulletMax = 30;
+				bullet.max = 6;
 				cdDuration = 0.1f;
 				reloadDuration = 2f;
 				overheatDuration = 0f;
 				break;
 			case WeaponType.ParticleCannon:
-				bulletMax = 200;
+				bullet.max = 200;
 				cdDuration = 0.01f;
 				reloadDuration = 0.02f;
 				overheatDuration = 2f;
 				break;
 		}
-		bulletCount = bulletMax;
+		bullet.value = bullet.max;
 	}
 	
 	// Update is called once per frame
@@ -116,15 +115,14 @@ public class PlayerWeapon : MonoBehaviour
 	            fire_at_cursor = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
 	            fire_at_cursor.Normalize();
 
-				GameObject newBullet = Instantiate(bullet[(int)type], transform.position, Quaternion.identity);
+				GameObject newBullet = Instantiate(bulletGOs[(int)type], transform.position, Quaternion.identity);
 				newBullet.GetComponent<Rigidbody2D>().velocity = fire_at_cursor * bulletSpeed[(int)type];
 	            newBullet.transform.LookAt(Vector3.forward + newBullet.transform.position, fire_at_cursor);
 
 	            Bullet buletScript = newBullet.GetComponent<Bullet>();
-	            buletScript.miss = Random.Range(0, 100) > accuracy;
-	            if(!buletScript.miss) buletScript.crit = Random.Range(0, 100) < critChance;
+	            buletScript.crit = Random.Range(0, 100) < critChance;
 	            
-				bulletCount--;
+				bullet.Reduce(1);
 
 				cdTimer = 0;
 	            state = WeaponState.Cooldown;
@@ -141,7 +139,7 @@ public class PlayerWeapon : MonoBehaviour
 				state = WeaponState.Ready;
 				break;
 			case WeaponType.ParticleCannon:
-				if(bulletCount < bulletMax) state = WeaponState.Reloading;
+				if(bullet.value < bullet.max) state = WeaponState.Reloading;
 				else state = WeaponState.Ready;
 				break;
 		}
@@ -169,13 +167,13 @@ public class PlayerWeapon : MonoBehaviour
 		switch(type)
 		{
 			case WeaponType.AK47:
-				bulletCount = bulletMax;
+				bullet.value = bullet.max;
 				state = WeaponState.Ready;
 				break;
 			case WeaponType.ParticleCannon:
-				if(bulletCount < bulletMax)
+				if(bullet.value < bullet.max)
 				{
-					bulletCount++;
+					bullet.Extend(1);
 					state = WeaponState.Reloading;
 				}
 				else
@@ -202,17 +200,17 @@ public class PlayerWeapon : MonoBehaviour
 		switch(type)
 		{
 			case WeaponType.AK47:
-				if(state != WeaponState.Reloading && bulletCount <= 0)
+				if(state != WeaponState.Reloading && bullet.value <= 0)
 				{
-                    bulletCount = 0;
+					bullet.value = 0;
                     reloadTimer = 0;
 					state = WeaponState.Reloading;
 				}
 				break;
 			case WeaponType.ParticleCannon:
-				if(bulletCount <= 0)
+				if(bullet.value <= 0)
 				{
-                    bulletCount = 0;
+					bullet.value = 0;
                     overheatTimer = 0;
 					state = WeaponState.Overheat;
 				}

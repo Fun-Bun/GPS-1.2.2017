@@ -53,12 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 0}
   type: 2
-  bulletCount: 0
-  bulletMax: 0
+  bullet:
+    value: 0
+    max: 0
   state: 0
   accuracy: 90
   critChance: 30
-  bullet:
+  bulletGOs:
   - {fileID: 1879446645940942, guid: 1002e49da1e75df428d10bef26847e56, type: 2}
   - {fileID: 1879446645940942, guid: 96adcc53bc4b4444f84cbbc49a35a9bf, type: 2}
   bulletSpeed:
